@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="css/temp.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <form id="converter-form">
+            <label for="temperature">Enter temperature:</label>
+            <input type="number" id="temperature" placeholder="Temperature" required>
+            
+            <div class="radio-group">
+                <input type="radio" id="toCelsius" name="conversion" value="toCelsius" checked>
+                <label for="toCelsius">Convert to Celsius</label>
+                
+                <input type="radio" id="toFahrenheit" name="conversion" value="toFahrenheit">
+                <label for="toFahrenheit">Convert to Fahrenheit</label>
+            </div>
+            
+            <button type="button" onclick="convertTemperature()">Convert</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temperatureInput = document.getElementById('temperature').value;
+            const resultDiv = document.getElementById('result');
+            const toCelsius = document.getElementById('toCelsius').checked;
+            const toFahrenheit = document.getElementById('toFahrenheit').checked;
+
+            let result;
+
+            if (toCelsius) {
+                result = (temperatureInput - 32) * 5/9;
+                resultDiv.innerHTML = `${temperatureInput}°F is equal to ${result.toFixed(2)}°C`;
+            } else if (toFahrenheit) {
+                result = (temperatureInput * 9/5) + 32;
+                resultDiv.innerHTML = `${temperatureInput}°C is equal to ${result.toFixed(2)}°F`;
+            }
+        }
+    </script>
+</body>
+</html>
